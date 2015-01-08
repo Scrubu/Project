@@ -7,8 +7,17 @@ void setup() {
 float x = 100;
 float y = 100;
 float gravity=1;
-void draw() {
 
+void keyPressed() {
+  
+    if (key== ' '){
+      gravity=gravity*-1;
+    }
+
+}
+
+void draw() {
+  background(55,88,100);
   noStroke();
   fill(255,10);
   rect(0,0,width,height);
@@ -25,11 +34,7 @@ if(keyPressed){
       x=x-18;
     }
 }
-if(keyPressed){
-    if (key== ' '){
-      gravity=gravity*-1;
-    }
-}
+
 if (gravity >0){
     if(y < height-10 ){
       y=y+gravity;
