@@ -7,41 +7,36 @@ void setup() {
 float x = 100;
 float y = 100;
 float gravity=1;
+boolean gravityTrue= true;
 
 void keyPressed() {
   
-    if (key== ' '){
-      gravity=gravity*-1;
+  if(key== 'd' || key== 'D'){
+      x=x+5;
     }
-
+  if(key== 'a' || key== 'A'){
+      x=x-5;
+    }
 }
-
+void keyReleased(){
+   if (key== ' '){
+      gravity= -gravity;
+      gravityTrue= !gravityTrue;
+    } 
+}
 void draw() {
   background(55,88,100);
   noStroke();
   fill(255,10);
   rect(0,0,width,height);
   
- 
-  // Add the current speed to the location.
-if(keyPressed){
-    if(key== 'd' || key== 'D'){
-      x=x+5;
-    }
-}
-if(keyPressed){
-    if(key== 'a' || key== 'A'){
-      x=x-18;
-    }
-}
-
-if (gravity >0){
+if (gravityTrue){
     if(y < height-10 ){
       y=y+gravity;
   }
   }
   else {
-    if (y > 0 + 10){
+    if (y > 10){
       y=y+gravity;
     }
   }
