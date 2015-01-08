@@ -11,3 +11,5 @@ Monsters
 Spikes 
 Powerups
 Finish Line
+
+1/8/15: Created Gravity that affects the protaganist
