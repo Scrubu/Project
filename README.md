@@ -7,9 +7,10 @@ Anti-gravity platform game. <bl>
 <ul><li>
 Player cannot jump.</li>
 <li>Can only reverse gravity</li>
+<li>Similar to vvvvvv</li>
 </ul><br><br>
 Features:
-<ol>Coins (Score)
+<ol><li>Coins (Score)</li>
 <li>Multiplayer</li>
 <li>Holes</li>
 <li>Monsters</li>
@@ -18,7 +19,20 @@ Features:
 <li>Finish Line</li>
 </ol>
 
-1/8/15: Created Gravity that affects the protaganist
+January 7, 2015:<ul>
+<li>Created processing file Gravity.pde</li>
+<li>Learned some processing tricks</li>
+<li>Added basic movement for protagonist</li>
+<li>Created Gravity that affects the protaganist</li>
+</ul><br><br>
 
+January 8, 2015:<ul>
+<li>Updated Gravity to run smoother, used KeyRelease instead of KeyPressed</li>
+<li>Fixed bug that led to infinite gravity change</li>
+<li>Created Hero.pde</li>
+<ul><br><br>
 
-1/8/15: Created Gravity that affects the protaganist
+January 9, 2015:<ul>
+<li>Updated movement to run smoother</li>
+</ul>
+
