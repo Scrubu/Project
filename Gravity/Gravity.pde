@@ -13,11 +13,11 @@ boolean right = false;
 
 void keyPressed() {
   
-  if(key== 'd' || key== 'D'){
+  if(key== 'a' || key== 'A'){
       left = false;
       right=true;
     }
-  if(key== 'a' || key== 'A'){
+  if(key== 'd' || key== 'D'){
       left = true;
       right = false;
     }
@@ -27,26 +27,30 @@ void keyReleased(){
       gravity= -gravity;
       gravityTrue= !gravityTrue;
     } 
+    if (key== 'a'||key=='A'|| key=='d' || key== 'D'){
+        left=false;
+        right=false;
+    }
+   
 }
 
 void move(){
-  if (left || !right){
+  if (left && !right){
     x=x+5;
   }
-  else if (!left || right){
+  else if (!left && right){
     x-=5;
   }
   else if (left==right){
     x=x;
   }
- System.out.println("lol");
 }
 void draw() {
   background(55,88,100);
   noStroke();
   fill(255,10);
   rect(0,0,width,height);
-  
+  move();
 if (gravityTrue){
     if(y < height-10 ){
       y=y+gravity;
@@ -57,7 +61,6 @@ if (gravityTrue){
       y=y+gravity;
     }
   }
-
   stroke(0);
   fill(175);
   ellipse(x,y,16,16);
