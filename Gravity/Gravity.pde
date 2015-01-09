@@ -6,7 +6,8 @@ void setup() {
 
 float x = 100;
 float y = 100;
-float gravity=1;
+float velocity=0;
+float gravity=1; 
 boolean gravityTrue= true;
 boolean left = false;
 boolean right = false;
@@ -51,16 +52,28 @@ void draw() {
   fill(255,10);
   rect(0,0,width,height);
   move();
-if (gravityTrue){
+
+   if (gravityTrue){
     if(y < height-10 ){
-      y=y+gravity;
-  }
-  }
-  else {
-    if (y > 10){
-      y=y+gravity;
+      velocity = velocity +gravity;
+      y=y+velocity;
     }
+    else{
+      velocity =0;
+    y=height-10;
+   }
   }
+   else {
+    if (y > 10){
+      velocity = velocity +gravity;
+      y=y+velocity;
+    }
+    else{
+      velocity = 0;
+     y=10;
+    }
+   }
+
   stroke(0);
   fill(175);
   ellipse(x,y,16,16);
