@@ -30,9 +30,11 @@ January 8, 2015:<ul>
 <li>Updated Gravity to run smoother, used KeyRelease instead of KeyPressed</li>
 <li>Fixed bug that led to infinite gravity change</li>
 <li>Created Hero.pde</li>
-<ul><br><br>
+</ul><br><br>
 
 January 9, 2015:<ul>
+<li>Fixed bug that prevented movement</li>
 <li>Updated movement to run smoother</li>
+<li>Added gravitational acceleration</li>
 </ul>
 
