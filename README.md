@@ -38,3 +38,7 @@ January 9, 2015:<ul>
 <li>Added gravitational acceleration</li>
 </ul>
 
+January 10, 2015:<ul>
+<li>Made transition from moving left to right smooth without any delays</li>
+<li>Fixed gravity bug where player would go offscreen by reversing gravity midair</li>
+</ul>
