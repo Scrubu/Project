@@ -7,7 +7,7 @@ void setup() {
 float x = 100;
 float y = 100;
 float velocity=0;
-float gravity=1; 
+float gravity=.5; 
 boolean gravityTrue= true;
 boolean left = false;
 boolean right = false;
@@ -15,12 +15,12 @@ boolean right = false;
 void keyPressed() {
   
   if(key== 'a' || key== 'A'){
-      left = false;
-      right=true;
+      left = true;
+      right=false;
     }
   if(key== 'd' || key== 'D'){
-      left = true;
-      right = false;
+      left = false;
+      right = true;
     }
 }
 void keyReleased(){
@@ -28,21 +28,22 @@ void keyReleased(){
       gravity= -gravity;
       gravityTrue= !gravityTrue;
     } 
-    if (key== 'a'||key=='A'|| key=='d' || key== 'D'){
+    if (key== 'a'||key=='A'){
         left=false;
-        right=false;
     }
-   
+    if (key == 'd' || key =='D'){
+        right=false;
+    }  
 }
 
 void move(){
-  if (left && !right){
-    x=x+5;
+  if (left){
+    x=x-5;
   }
-  else if (!left && right){
-    x-=5;
+  else if (right){
+    x+=5;
   }
-  else if (left==right){
+  else{
     x=x;
   }
 }
@@ -52,29 +53,38 @@ void draw() {
   fill(255,10);
   rect(0,0,width,height);
   move();
+  
 
    if (gravityTrue){
     if(y < height-10 ){
       velocity = velocity +gravity;
       y=y+velocity;
     }
-    else{
+      else{
       velocity =0;
-    y=height-10;
-   }
-  }
+      y=height-10;
+     }
+    }
+   
    else {
     if (y > 10){
       velocity = velocity +gravity;
       y=y+velocity;
-    }
-    else{
+      }
+    else{  
       velocity = 0;
      y=10;
     }
    }
+   
+if (y < 10){
+    y=10;
+  }
+  if(y>height - 10){
+    y = height - 10;
+  }
 
   stroke(0);
   fill(175);
   ellipse(x,y,16,16);
-  }
+}
