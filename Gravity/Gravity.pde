@@ -11,7 +11,7 @@ float gravity=.5;
 boolean gravityTrue= true;
 boolean left = false;
 boolean right = false;
-
+Hero a;
 
 void keyPressed() {
   
@@ -37,55 +37,18 @@ void keyReleased(){
         right=false;
     }  
 }
-void move(){
-if (left){
-    x=x-5;
-  }
-  else if (right){
-    x+=5;
-  }
-  else{
-    x=x;
-  }
-}
+
 
 void draw() {
   background(55,88,100);
   noStroke();
   fill(255,10);
   rect(0,0,width,height);
-  move();
 
   
-   if (gravityTrue){
-    if(y < height-10 ){
-      velocity = velocity +gravity;
-      y=y+velocity;
-    }
-      else{
-      velocity =0;
-      y=height-10;
-     }
-    }
-   
-   else {
-    if (y > 10){
-      velocity = velocity +gravity;
-      y=y+velocity;
-      }
-    else{  
-      velocity = 0;
-     y=10;
-    }
-   }
-  if (y < 8){
-    y=10;
-  }
-  if(y>height - 10){
-    y = height - 10;
-  }
-  
+ 
   stroke(0);
   fill(175);
- ellipse(x,y,16,16);
+  a= new Hero();
+  a.move();
 }
