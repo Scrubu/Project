@@ -12,6 +12,7 @@ boolean gravityTrue= true;
 boolean left = false;
 boolean right = false;
 
+
 void keyPressed() {
   
   if(key== 'a' || key== 'A'){
@@ -25,6 +26,7 @@ void keyPressed() {
 }
 void keyReleased(){
    if (key== ' '){
+     velocity = 0;
       gravity= -gravity;
       gravityTrue= !gravityTrue;
     } 
@@ -35,9 +37,8 @@ void keyReleased(){
         right=false;
     }  
 }
-
 void move(){
-  if (left){
+if (left){
     x=x-5;
   }
   else if (right){
@@ -47,6 +48,7 @@ void move(){
     x=x;
   }
 }
+
 void draw() {
   background(55,88,100);
   noStroke();
@@ -76,14 +78,14 @@ void draw() {
      y=10;
     }
    }
-  if (y < 10){
+  if (y < 8){
     y=10;
   }
   if(y>height - 10){
     y = height - 10;
   }
-
+  
   stroke(0);
   fill(175);
-  ellipse(x,y,16,16);
+ ellipse(x,y,16,16);
 }
