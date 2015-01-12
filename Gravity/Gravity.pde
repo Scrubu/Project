@@ -53,8 +53,8 @@ void draw() {
   fill(255,10);
   rect(0,0,width,height);
   move();
-  
 
+  
    if (gravityTrue){
     if(y < height-10 ){
       velocity = velocity +gravity;
@@ -76,8 +76,7 @@ void draw() {
      y=10;
     }
    }
-   
-if (y < 10){
+  if (y < 10){
     y=10;
   }
   if(y>height - 10){
