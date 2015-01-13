@@ -44,9 +44,6 @@ void draw() {
   noStroke();
   fill(255,10);
   rect(0,0,width,height);
-
-  
- 
   stroke(0);
   fill(175);
   a= new Hero();
