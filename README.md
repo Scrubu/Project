@@ -36,9 +36,16 @@ January 9, 2015:<ul>
 <li>Fixed bug that prevented movement</li>
 <li>Updated movement to run smoother</li>
 <li>Added gravitational acceleration</li>
-</ul>
+</ul><br><br>
 
 January 10, 2015:<ul>
 <li>Made transition from moving left to right smooth without any delays</li>
 <li>Fixed gravity bug where player would go offscreen by reversing gravity midair</li>
-</ul>
+</ul><br><br>
+
+January 12, 2015<ul>
+<li>Fixed bug that did not allow player to reverse gravity</li>
+<li>Gravitational acceleration is now canceled after player switches gravitational direction</li>
+<li>Integrated Hero class into code</li>
+<li>Created obstacle class</li>
+</ul><br><br>
