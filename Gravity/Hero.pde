@@ -1,10 +1,23 @@
 public class Hero {
-
+  boolean collision;
+  float collisionCor;
   int health;
   public Hero() {
     ellipse(x, y, 16, 16);
   }
+  
+  float getX(){
+   return x; 
+  }
+  float getY(){
+   return y; 
+  }
   void move() {
+    
+    if(collision){
+     x=collisionCor;
+    }
+    
     //LEFT AND RIGHT KEYS
     if (left) {
       x=x-5;
@@ -37,6 +50,15 @@ public class Hero {
     if (y>height - 10) {
       y = height - 10;
     }
+  }
+  void collision(Obstacle a){
+    if(a.getX()>x){
+      collision=true;
+       collisionCor=a.getX();
+    }
+    else{
+       collision= false;
+   }
   }
 }
 
