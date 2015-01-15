@@ -5,40 +5,37 @@ void setup() {
 }
 
 ArrayList obs = new ArrayList<Obstacle>();
-float x = 100;
-float y = 100;
-float velocity=0;
-float gravity=.5; 
-boolean gravityTrue= true;
-boolean left = false;
-boolean right = false;
-Hero a;
+
+
+Hero a=new Hero();
 Obstacle b;
-void keyPressed() {
+
+ void keyPressed() {
   
   if(key== 'a' || key== 'A'){
-      left = true;
-      right=false;
+      a.setLeft(true);
+      a.setRight(false);
+  
     }
   if(key== 'd' || key== 'D'){
-      left = false;
-      right = true;
+      a.setLeft(false);
+      a.setRight(true);
+
     }
 }
 void keyReleased(){
    if (key== ' '){
-     velocity = 0;
-     gravity= -gravity;
-     gravityTrue= !gravityTrue;
+     a.setVel(0);
+     a.setGrav(-1);
     } 
     if (key== 'a'||key=='A'){
-        left=false;
+        a.setLeft(false);
     }
     if (key == 'd' || key =='D'){
-        right=false;
+        a.setRight(false);
+
     }  
 }
-
      
 
 void draw() {
@@ -48,10 +45,10 @@ void draw() {
   rect(0,0,width,height);
   stroke(0);
   fill(175);
-  a= new Hero();
-  a.move();
-  b=new Obstacle();
-  obs.add(b);
+  a.display();
   a.getX();
-  a.collision(b);
+  
+  a.move();
+
+  //a.collision(b);
 }

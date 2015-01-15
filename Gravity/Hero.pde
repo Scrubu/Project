@@ -2,23 +2,45 @@ public class Hero {
   boolean collision=false;;
   float radi=16;
   int health;
-  float x,y;
+  float x=100;
+  float y=100;
+  float velocity=0;
+float gravity=.5; 
+boolean gravityTrue= true;
+boolean left = false;
+boolean right = false;
+
+
   public Hero() {
-    ellipseMode(RADIUS);
-    ellipse(x, y, 16, 16);
-    this.x = x;
-    this.y = y;
   }
   
+  void display(){
+    ellipseMode(RADIUS);
+    ellipse(x, y, 16, 16);
+  }
   float getX(){
-   return x; 
+
+   return x;
+   
   }
   float getY(){
    return y; 
   }
-  void move() {
-    
-   
+  void setLeft(boolean x){
+   left=x; 
+  }
+  void setRight(boolean x){
+   right = x; 
+  }
+  void setVel(float x){
+   velocity=x; 
+  }
+  void setGrav(float x){
+   gravity= gravity * x; 
+   gravityTrue= !gravityTrue;
+  }
+  
+  void move() { 
     
     //LEFT AND RIGHT KEYS
     if (left) {
@@ -72,15 +94,11 @@ public class Hero {
     
     if(x > xlimit1){// && x < xlimit2 && y > ylimit1 && y < ylimit2){
      collision=true; 
-     println(x+radi);
-     println(xlimit1);
-     println(collision);
+
     }
     else{
      collision = false; 
-     println(x+radi);
-     println(xlimit1);
-     println(collision);
+
     }
   }
 
