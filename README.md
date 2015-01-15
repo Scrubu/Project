@@ -49,3 +49,13 @@ January 12, 2015<ul>
 <li>Integrated Hero class into code</li>
 <li>Created obstacle class</li>
 </ul><br><br>
+
+January 14, 2015<ul>
+<li>Started cleaning up main gravity class by moving functions to the Hero class</li>
+<ul><br><br>
+
+January 15, 2015<ul>
+<li>Finished cleaning up main class</li>
+<li>Added mutator and accessor methods in Hero class to get its properties</li>
+<li>began working on collision with obstacles</li>
+<ul><br><br>
