@@ -38,19 +38,7 @@ void keyReleased(){
         right=false;
     }  
 }
-void collision(){
-  for (int z=0; z<obs.size(); z++){
-     if (a.getX()==b.getX()){
-       velocity=0;
-       gravityTrue=false;
-     }
-     if (a.getY()==b.getY()){
-       velocity=0;
-       gravity=0;
-       gravityTrue=false;
-     }
-  }
-}
+
      
 
 void draw() {
@@ -64,4 +52,6 @@ void draw() {
   a.move();
   b=new Obstacle();
   obs.add(b);
+  a.getX();
+  a.collision(b);
 }
