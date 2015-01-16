@@ -45,10 +45,9 @@ void draw() {
   rect(0,0,width,height);
   stroke(0);
   fill(175);
-  a.display();
-  a.getX();
-  
+  a.display();  
   a.move();
-
-  //a.collision(b);
+  b=new Obstacle(100,100,50,50);
+  obs.add(b);
+  a.collision(b);
 }

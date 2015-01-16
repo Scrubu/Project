@@ -2,7 +2,7 @@ public class Hero {
   boolean collision=false;;
   float radi=16;
   int health;
-  float x=100;
+  float x=200;
   float y=100;
   float velocity=0;
 float gravity=.5; 
@@ -45,7 +45,6 @@ boolean right = false;
     //LEFT AND RIGHT KEYS
     if (left) {
       if(!(collision)){
-        println("dicks");
        x=x-5;
       }
 
@@ -92,13 +91,14 @@ boolean right = false;
     float ylimit1 = a.getY() + (.5 * a.getH());
     float ylimit2 = a.getY() - (.5 * a.getH());
     
-    if(x > xlimit1){// && x < xlimit2 && y > ylimit1 && y < ylimit2){
+    if(x < xlimit1 && (y > ylimit2 && y < ylimit1)){//&& x < xlimit2 && y > ylimit1){
      collision=true; 
 
     }
     else{
      collision = false; 
-
+     println(x);
+      println(xlimit1);
     }
   }
 
