@@ -10,13 +10,13 @@ boolean gravityTrue= true;
 boolean left = false;
 boolean right = false;
 
-
   public Hero() {
   }
   
   void display(){
     ellipseMode(RADIUS);
     ellipse(x, y, 16, 16);
+
   }
   float getX(){
 
