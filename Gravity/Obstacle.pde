@@ -9,13 +9,15 @@ class Obstacle{
    rect(x,y,w,h);
    xcor=x;
    ycor=y;
-   this.w = w;
-   this.h = h;
   }
   Obstacle(){
    rect(100,height -70,50,50); 
    xcor=100+16;
    ycor=height;
+<<<<<<< HEAD
+=======
+   
+>>>>>>> f7a37fd0b7148b4be3b6cb737e8c776659ebcbd6
   }
   float getX(){
    return xcor; 

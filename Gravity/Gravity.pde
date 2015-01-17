@@ -1,9 +1,8 @@
-PImage img;
+
 void setup() {
   size(500,500);
   smooth();
   background(255);
-  img=loadImage("hat.png");
 }
 
 ArrayList obs = new ArrayList<Obstacle>();
@@ -47,11 +46,14 @@ void draw() {
   rect(0,0,width,height);
   stroke(0);
   fill(175);
- image(img,a.getX()-img.width/2,a.getY()-img.height/2);
+
   a.display();
   a.getX();
   
-  a.move();
 
-  //a.collision(b);
+  a.display();  
+  a.move();
+  b=new Obstacle(100,100,50,50);
+  obs.add(b);
+  a.collision(b);
 }
