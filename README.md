@@ -10,13 +10,9 @@ Player cannot jump.</li>
 <li>Similar to vvvvvv</li>
 </ul><br><br>
 Features:
-<ol><li>Coins (Score)</li>
-<li>Multiplayer</li>
-<li>Holes</li>
-<li>Monsters</li>
-<li>Spikes </li>
-<li>Powerups</li>
-<li>Finish Line</li>
+<ol>
+<li>obstacles</li>
+<li>Player must last as long as possible while avoiding obstacles, similar to gravity guy
 </ol>
 
 January 7, 2015:<ul>
@@ -58,4 +54,9 @@ January 15, 2015<ul>
 <li>Finished cleaning up main class</li>
 <li>Added mutator and accessor methods in Hero class to get its properties</li>
 <li>began working on collision with obstacles</li>
+</ul><br><br>
+
+January 17, 2015<ul>
+<li>worked more on collision</li>
+<li>implemented sprite</li>
 </ul><br><br>
