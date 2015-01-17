@@ -1,6 +1,7 @@
 public class Hero {
   boolean collision=false;;
-  float radi=16;
+  float xlim=15;//half width of rect of hero to measure collision
+  float ylim=35;//half height of rect of hero to measure collision
   int health;
   float x=200;
   float y=100;
@@ -14,9 +15,10 @@ boolean right = false;
   }
   
   void display(){
-    ellipseMode(RADIUS);
-    ellipse(x, y, 16, 16);
-
+    rectMode(CENTER);
+    //add noStroke() here
+    fill(0,0,0,0);
+    rect(x, y, 30, 60);//rect is easier than ellipse for sprite
   }
   float getX(){
 
@@ -86,12 +88,12 @@ boolean right = false;
     }
   }
   void collision(Obstacle a){
-    float xlimit1 = a.getX() + (.5 * a.getW());
+    float xlimit1 = a.getX() + (.5 * a.getW());//measures dimensions of obstacle
     float xlimit2 = a.getX() - (.5 * a.getW());
-    float ylimit1 = a.getY() + (.5 * a.getH());
+    float ylimit1 = a.getY()+ (.5 * a.getH());
     float ylimit2 = a.getY() - (.5 * a.getH());
     
-    if(x < xlimit1 && (y > ylimit2 && y < ylimit1)){//&& x < xlimit2 && y > ylimit1){
+    if((x-xlim < xlimit1 && x+xlim>xlimit2) && (y+ylim > ylimit2 && y-ylim < ylimit1)){//&& x < xlimit2 && y > ylimit1){
      collision=true; 
 
     }

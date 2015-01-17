@@ -50,8 +50,9 @@ void draw() {
  image(img,a.getX()-img.width/2,a.getY()-img.height/2);
   a.display();
   a.getX();
-  
   a.move();
-
-  //a.collision(b);
+b=new Obstacle(100,100,50,50);
+b.display();
+obs.add(b);
+  a.collision(b);
 }
