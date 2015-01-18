@@ -100,28 +100,23 @@ boolean right = false;
     float ylimit1 = a.getY()+ (.5 * a.getH());
     float ylimit2 = a.getY() - (.5 * a.getH());
     
-    if((x-xlim < xlimit1 +5 && x>xlimit2) && (y > ylimit2 && y < ylimit1)){//&& x < xlimit2 && y > ylimit1){
+    if((x-xlim < xlimit1 +1 && x>xlimit2) && (y > ylimit2 && y < ylimit1)){//&& x < xlimit2 && y > ylimit1){
      collisionLeft=true; 
 
     }
-    else if((x< xlimit1 && x+xlim>xlimit2-5) && (y > ylimit2 && y < ylimit1)){//&& x < xlimit2 && y > ylimit1){
+    else if((x< xlimit1 && x+xlim>xlimit2-1) && (y > ylimit2 && y < ylimit1)){//&& x < xlimit2 && y > ylimit1){
      collisionRight=true; 
 
     }
-    else if((x < xlimit1 && x>xlimit2) && (y+ylim > ylimit2-5 && y < ylimit1)){//&& x < xlimit2 && y > ylimit1){
+    else if((x < xlimit1 && x>xlimit2) && (y+ylim > ylimit2-1 && y < ylimit1)){//&& x < xlimit2 && y > ylimit1){
      collisionUp=true; 
 
     }
-    else if((x < xlimit1 && x>xlimit2) && (y> ylimit2 && y-ylim < ylimit1+5)){//&& x < xlimit2 && y > ylimit1){
+    else if((x < xlimit1 && x>xlimit2) && (y> ylimit2 && y-ylim < ylimit1+1)){//&& x < xlimit2 && y > ylimit1){
      collisionDown=true; 
 
     }
     else{
-     collisionUp = false; 
-     collisionDown = false; 
-     collisionLeft = false; 
-     collisionRight = false; 
-
      println(x);
       println(xlimit1);
     }

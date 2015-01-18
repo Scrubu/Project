@@ -11,18 +11,30 @@ ArrayList obs = new ArrayList<Obstacle>();
 
 
 Hero a=new Hero();
-Obstacle b;
+Obstacle b,c;
 
  void keyPressed() {
   
   if(key== 'a' || key== 'A'){
-      a.setLeft(true);
-      a.setRight(false);
+     a.setLeft(true);
+     a.setRight(false);
+     a.collisionUp=false;
+     a.collisionDown=false;
+     a.collisionLeft=false;
+     a.collisionRight=false;
+     a.collision(b);
+     a.collision(c);
   
     }
   if(key== 'd' || key== 'D'){
-      a.setLeft(false);
-      a.setRight(true);
+     a.setLeft(false);
+     a.setRight(true);
+     a.collisionUp=false;
+     a.collisionDown=false;
+     a.collisionLeft=false;
+     a.collisionRight=false;
+     a.collision(b);
+     a.collision(c);
 
     }
 }
@@ -30,6 +42,12 @@ void keyReleased(){
    if (key== ' '){
      a.setVel(0);
      a.setGrav(-1);
+     a.collisionUp=false;
+     a.collisionDown=false;
+     a.collisionLeft=false;
+     a.collisionRight=false;
+     a.collision(b);
+     a.collision(c);
     } 
     if (key== 'a'||key=='A'){
         a.setLeft(false);
@@ -42,7 +60,7 @@ void keyReleased(){
      
 void drawChar(){
   if (a.gravityTrue){
-     image(img,a.getX()-img.width/2,a.getY()-img.height/2);
+    image(img,a.getX()-img.width/2,a.getY()-img.height/2);
   } else {
     image(img2,a.getX()-img2.width/2,a.getY()-img2.height/2);
   }
@@ -54,12 +72,15 @@ void draw() {
   //rect(0,0,width,height);
   stroke(0);
   fill(175);
-  drawChar();
-  a.display();
-  a.getX();
-  b=new Obstacle(100,100,50,50);
+  b=new Obstacle(300,100,50,50);
   b.display();
   obs.add(b);
   a.collision(b);
+  c=new Obstacle(100,500,50,50);
+  c.display();
+  drawChar();
+  a.display();
+  a.getX();
+  a.collision(c);
   a.move();
 }
