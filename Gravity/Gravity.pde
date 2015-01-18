@@ -1,10 +1,12 @@
-PImage img, img2;
+PImage img, img2, curs, intro;
 void setup() {
-  size(500,500);
-  smooth();
-  background(255);
   img=loadImage("hat.png");
   img2=loadImage("hat2.png");
+  curs=loadImage("cursor.gif");
+  intro=loadImage("intro.jpg");
+  size(1000,562);
+  smooth();
+  
 }
 
 ArrayList<Obstacle> obs = new ArrayList<Obstacle>();
@@ -73,7 +75,10 @@ void drawChar(){
   }
 }
 void draw() {
-  background(55,88,100);
+  cursor(curs);
+  //background(55,88,100);
+  intro.resize(width, height);
+  background(intro);
   noStroke();
   fill(255,10);
   //rect(0,0,width,height);
@@ -90,7 +95,6 @@ void draw() {
   obs.add(d);
   drawChar();
   a.display();
-  a.getX();
   collide();
   a.move();
 }

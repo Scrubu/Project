@@ -108,11 +108,11 @@ public class Hero {
      collisionRight=true; 
 
     }
-    else if((x < xlimit1 && x>xlimit2) && (y+ylim > ylimit2-1 && y < ylimit1)){//&& x < xlimit2 && y > ylimit1){
+    else if((x < xlimit1 && x>xlimit2) && (y+ylim > ylimit2-7 && y < ylimit1)){//&& x < xlimit2 && y > ylimit1){
      collisionDown=true; 
 
     }
-    else if((x < xlimit1 && x>xlimit2) && (y> ylimit2 && y-ylim < ylimit1+1)){//&& x < xlimit2 && y > ylimit1){
+    else if((x < xlimit1 && x>xlimit2) && (y> ylimit2 && y-ylim < ylimit1+7)){//&& x < xlimit2 && y > ylimit1){
      collisionUp=true; 
 
     }
