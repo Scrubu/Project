@@ -1,19 +1,21 @@
 PImage img, img2, curs, intro;
+boolean intro;
 void setup() {
   img=loadImage("hat.png");
   img2=loadImage("hat2.png");
-  curs=loadImage("cursor.gif");
+  curs=loadImage("curs.png");
   intro=loadImage("intro.jpg");
   size(1000,562);
   smooth();
+  intro=true;
   
 }
-
 ArrayList<Obstacle> obs = new ArrayList<Obstacle>();
 
 
 Hero a=new Hero();
 Obstacle b,c;
+
 
  void keyPressed() {
   
@@ -74,27 +76,38 @@ void drawChar(){
     image(img2,a.getX()-img2.width/2,a.getY()-img2.height/2);
   }
 }
-void draw() {
-  cursor(curs);
-  //background(55,88,100);
+void introduction(){
   intro.resize(width, height);
   background(intro);
+  cursor(curs);
   noStroke();
   fill(255,10);
   //rect(0,0,width,height);
-  stroke(0);
+  stroke(0);    
   fill(175);
-  b=new Obstacle(300,100,50,50);
-  b.display();
-  obs.add(b);
-  c=new Obstacle(100,500,5000,50);
-  c.display();
-  obs.add(c);
-  Obstacle d=new Obstacle(500,100,5000,50);
-  d.display();
-  obs.add(d);
-  drawChar();
-  a.display();
-  collide();
-  a.move();
+}
+void draw() {
+  if (intro){
+    introduction();
+  } else{
+    background(55,88,100);
+    noStroke();
+    fill(255,10);
+  //rect(0,0,width,height);
+    stroke(0);
+    fill(175);
+    b=new Obstacle(300,100,50,50);
+    b.display();
+    obs.add(b);
+    c=new Obstacle(100,500,5000,50);
+    c.display();
+    obs.add(c);
+    Obstacle d=new Obstacle(500,100,5000,50);
+    d.display();
+    obs.add(d);
+    drawChar();
+    a.display();
+    collide();
+    a.move();
+  }
 }
