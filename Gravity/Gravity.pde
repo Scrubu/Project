@@ -16,28 +16,32 @@ Obstacle b,c;
  void keyPressed() {
   
   if(key== 'a' || key== 'A'){
-     a.setLeft(true);
-     a.setRight(false);
      a.collisionUp=false;
      a.collisionDown=false;
      a.collisionLeft=false;
      a.collisionRight=false;
-     a.collision(b);
-     a.collision(c);
-  
-    }
+     collide();
+     if (a.collisionUp || a.collisionDown){
+       a.setLeft(true);
+       a.setRight(false);
+     } else if(a.right){
+       a.setRight(false);
+     }
+  }
   if(key== 'd' || key== 'D'){
-     a.setLeft(false);
-     a.setRight(true);
      a.collisionUp=false;
      a.collisionDown=false;
      a.collisionLeft=false;
      a.collisionRight=false;
-     a.collision(b);
-     a.collision(c);
-
-    }
-}
+     collide();
+     if (a.collisionUp || a.collisionDown){
+       a.setLeft(false);
+       a.setRight(true);
+     } else if(a.right){
+       a.setLeft(false);
+     }
+  }
+ }
 void keyReleased(){
    if (key== ' ' && (a.collisionUp || a.collisionDown)){
      a.setVel(0);
@@ -46,8 +50,7 @@ void keyReleased(){
      a.collisionDown=false;
      a.collisionLeft=false;
      a.collisionRight=false;
-     a.collision(b);
-     a.collision(c);
+     collide();
     } 
     if (key== 'a'||key=='A'){
         a.setLeft(false);
