@@ -1,13 +1,16 @@
 public class Hero {
-  boolean collision=false;;
+  boolean collisionUp=false;
+  boolean collisionDown=false;
+  boolean collisionLeft=false;
+  boolean collisionRight=false;
   float xlim=15;//half width of rect of hero to measure collision
   float ylim=35;//half height of rect of hero to measure collision
   int health;
   float x=200;
   float y=100;
   float velocity=0;
-float gravity=.5; 
-boolean gravityTrue= true;
+  float gravity=.5; 
+  boolean gravityTrue= true;
 boolean left = false;
 boolean right = false;
 
@@ -18,7 +21,7 @@ boolean right = false;
     rectMode(CENTER);
     //add noStroke() here
     fill(0,0,0,0);
-    rect(x, y, 30, 60);//rect is easier than ellipse for sprite
+    rect(x, y, 0, 0);//rect is easier than ellipse for sprite
   }
   float getX(){
 
@@ -46,14 +49,16 @@ boolean right = false;
     
     //LEFT AND RIGHT KEYS
     if (left) {
-      if(!(collision)){
+      if(!collisionLeft){
        x=x-5;
+       collisionRight=false;
       }
 
     }
     if (right) {
-      if(!collision){
+      if(!collisionRight){
       x+=5;
+      collisionLeft=false;
       }
     }// else {
      // x=x;
@@ -61,9 +66,10 @@ boolean right = false;
     //GRAVITY ANTI-GRAVITY
     if (gravityTrue) {
       if (y < height-10 ) {
-        if(!collision){
+        if(!collisionDown){
         velocity = velocity +gravity;
         y=y+velocity;
+        collisionUp=false;
         }
       } else {
         velocity =0;
@@ -71,9 +77,10 @@ boolean right = false;
       }
     } else {
       if (y > 10) {
-        if(!collision){
+        if(!collisionUp){
         velocity = velocity +gravity;
         y=y+velocity;
+        collisionDown=false;
         }
       } else {  
         velocity = 0;
@@ -93,12 +100,28 @@ boolean right = false;
     float ylimit1 = a.getY()+ (.5 * a.getH());
     float ylimit2 = a.getY() - (.5 * a.getH());
     
-    if((x-xlim < xlimit1 && x+xlim>xlimit2) && (y+ylim > ylimit2 && y-ylim < ylimit1)){//&& x < xlimit2 && y > ylimit1){
-     collision=true; 
+    if((x-xlim < xlimit1 +5 && x>xlimit2) && (y > ylimit2 && y < ylimit1)){//&& x < xlimit2 && y > ylimit1){
+     collisionLeft=true; 
+
+    }
+    else if((x< xlimit1 && x+xlim>xlimit2-5) && (y > ylimit2 && y < ylimit1)){//&& x < xlimit2 && y > ylimit1){
+     collisionRight=true; 
+
+    }
+    else if((x < xlimit1 && x>xlimit2) && (y+ylim > ylimit2-5 && y < ylimit1)){//&& x < xlimit2 && y > ylimit1){
+     collisionUp=true; 
+
+    }
+    else if((x < xlimit1 && x>xlimit2) && (y> ylimit2 && y-ylim < ylimit1+5)){//&& x < xlimit2 && y > ylimit1){
+     collisionDown=true; 
 
     }
     else{
-     collision = false; 
+     collisionUp = false; 
+     collisionDown = false; 
+     collisionLeft = false; 
+     collisionRight = false; 
+
      println(x);
       println(xlimit1);
     }
