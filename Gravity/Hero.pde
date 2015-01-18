@@ -4,7 +4,7 @@ public class Hero {
   boolean collisionLeft=false;
   boolean collisionRight=false;
   float xlim=15;//half width of rect of hero to measure collision
-  float ylim=35;//half height of rect of hero to measure collision
+  float ylim=40;//half height of rect of hero to measure collision
   int health;
   float x=200;
   float y=100;

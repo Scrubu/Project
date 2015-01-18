@@ -82,7 +82,7 @@ void draw() {
   c=new Obstacle(100,500,5000,50);
   c.display();
   obs.add(c);
-  Obstacle d=new Obstacle(500,500,5000,50);
+  Obstacle d=new Obstacle(500,100,5000,50);
   d.display();
   obs.add(d);
   drawChar();
