@@ -120,9 +120,6 @@ boolean right = false;
      //dprintln(x);
      // println(xlimit1);
     }
-    if (collisionUp){
-      println("ron");
-    }
   }
 
 }

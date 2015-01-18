@@ -7,7 +7,7 @@ void setup() {
   img2=loadImage("hat2.png");
 }
 
-ArrayList obs = new ArrayList<Obstacle>();
+ArrayList<Obstacle> obs = new ArrayList<Obstacle>();
 
 
 Hero a=new Hero();
@@ -39,7 +39,7 @@ Obstacle b,c;
     }
 }
 void keyReleased(){
-   if (key== ' '){
+   if (key== ' ' && (a.collisionUp || a.collisionDown)){
      a.setVel(0);
      a.setGrav(-1);
      a.collisionUp=false;
@@ -57,7 +57,11 @@ void keyReleased(){
 
     }  
 }
-     
+void collide(){
+  for (int x=0;x<obs.size();x++){
+     a.collision(obs.get(x));
+  }
+}
 void drawChar(){
   if (a.gravityTrue){
     image(img,a.getX()-img.width/2,a.getY()-img.height/2);
@@ -75,12 +79,15 @@ void draw() {
   b=new Obstacle(300,100,50,50);
   b.display();
   obs.add(b);
-  a.collision(b);
-  c=new Obstacle(100,500,50,50);
+  c=new Obstacle(100,500,5000,50);
   c.display();
+  obs.add(c);
+  Obstacle d=new Obstacle(500,500,5000,50);
+  d.display();
+  obs.add(d);
   drawChar();
   a.display();
   a.getX();
-  a.collision(c);
+  collide();
   a.move();
 }
