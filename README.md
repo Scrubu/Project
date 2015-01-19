@@ -10,7 +10,10 @@ Player cannot jump.</li>
 </ul><br><br>
 Features:
 <ol>
-<li>obstacles</li>
+<li>Press 'A' and 'D' buttons to move left and right respectively</li>
+<li>Press spacebar to reverse gravity of yourself</li>
+<li>Press 'R' to restart map</li>
+<li>obstacles that try to collide with player</li>
 <li>Player must last as long as possible while avoiding obstacles, similar to gravity guy</li>
 <li>Score will increase the longer the player stays alive</li>
 </ol>
@@ -69,6 +72,8 @@ January 18, 2015<ul>
 </ul><br><br>
 
 January 19, 2015<ul>
-<li>stared working on player losing if he goes off the map</li>
-<li>implemented some aesthetics such as background and sprites</li>
+<li>added player losing if he goes off the map</li>
+<li>implemented some aesthetics such as background, music, and sprites</li>
+<li>implemented score system based on survival time</li>
+<li>implemented a restart button</li>
 </ul><br><br>
