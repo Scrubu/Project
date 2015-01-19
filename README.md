@@ -34,7 +34,7 @@ January 8, 2015:<ul>
 January 9, 2015:<ul>
 <li>Fixed bug that prevented movement</li>
 <li>Updated movement to run smoother</li>
-<li>Added gravitational acceleration</li>
+<li>Added gravitational acceleration by using velocity and gravity</li>
 </ul><br><br>
 
 January 10, 2015:<ul>
@@ -60,12 +60,15 @@ January 15, 2015<ul>
 </ul><br><br>
 
 January 17, 2015<ul>
-<li>worked more on collision</li>
+<li>worked more on collision, lots of bugs where collision does not register obstacles</li>
 <li>implemented sprite</li>
+<li>generated invisible rectangle that stays on sprite to register when it touches obstacles</li>
 </ul><br><br>
 
 January 18, 2015<ul>
 <li>collision works now</li>
+<li>minor bug where player can accidentally be teleported to one side of a block when hit at a certain angle</li>
+<li>Not sure how to fix bug, but am sure it has something to do with the specific areas in which collision registers not being specific enough</li>
 <li>started obstacle moving from one side of map to other</li>
 <li>obstacles are generated randomly with random size</li>
 <li>Worked on having generated obstacles be put into array and looped to see if player is colliding</li>
@@ -74,6 +77,7 @@ January 18, 2015<ul>
 January 19, 2015<ul>
 <li>added player losing if he goes off the map</li>
 <li>implemented some aesthetics such as background, music, and sprites</li>
-<li>implemented score system based on survival time</li>
+<li>music track is 20 minutes long</li>
+<li>implemented score system based on survival time, highscore will be recorded</li>
 <li>implemented a restart button</li>
 </ul><br><br>
