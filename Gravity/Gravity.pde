@@ -1,11 +1,20 @@
 import java.util.Random;
+import ddf.minim.*;
+Minim minim;
+AudioPlayer player;
 PImage img, img2, curs, intro,bg;
 boolean intro2;
-ArrayList<Obstacle> obs = new ArrayList<Obstacle>();
-Hero a=new Hero();
-Obstacle start = new Obstacle(200,100,1000,100);
-Obstacle start2= new Obstacle(200,300,1000,100);
+ArrayList<Obstacle> obs;
+Hero a;
+Obstacle start;
+Obstacle start2;
+int highscore=0;
+int score;
 void setup() {
+  minim=new Minim(this);
+  player=minim.loadFile("song.mp3");
+  score=0;
+  obs = new ArrayList<Obstacle>();
   bg = loadImage("tsun2.jpg");
   img=loadImage("hat.png");
   img2=loadImage("hat2.png");
@@ -14,7 +23,10 @@ void setup() {
   size(1280,716);
   smooth();
   intro2=true;
-  obs.add(start);
+  a=new Hero();
+  start= new Obstacle(200,100,1500,100);
+  start2= new Obstacle(200,700,1500,100);
+   obs.add(start);
   obs.add(start2);
 }
 
@@ -39,6 +51,11 @@ a.collisionDown=false;
   }
  }
 void keyReleased(){
+  if(key== 'r' || key == 'R'){
+    player.close();
+  setup();
+  loop();
+  }
    if (key== ' ' ){
      a.setVel();
      a.setGrav(-1);
@@ -74,17 +91,33 @@ void introduction(){
   stroke(0);    
   fill(175);
 }
+void death(){
+  if(a.getDead()==true){
+    textSize(100);
+    text("EMBRACE DEATH OR",100,300);
+    text("PRESS R TO RESTART", 100,500);
+    fill(200,20,20);
+ noLoop();
+ if(highscore<score){
+  highscore=score; 
+ }
+  }
+}
+
+void score(){
+  score+=1;
+  textSize(50);
+text("SCORE: "+score, 10, 100); 
+text("HIGHSCORE: "+highscore,10,200);
+fill(0, 102, 153);
+}
+
 void draw() {
 //  if (intro2){
 //    introduction();
 //  } else{
     Random rand = new Random();
     background(bg);
-    noStroke();
-    fill(255,10);
-  //rect(0,0,width,height);
-    stroke(0);
-    fill(175);
   int num = rand.nextInt(100);
   if(num<5){
     int x = width;
@@ -94,13 +127,19 @@ void draw() {
     Obstacle b = new Obstacle(x,y,w,h);
     obs.add(b);
   }
-  for(int x=0;x<obs.size();x++){
+    score();
+    score();
+ 
+     for(int x=0;x<obs.size();x++){
     obs.get(x).move();
    obs.get(x).display(); 
-  }
-    drawChar();
+  }   
+  death();
+    death();
+       drawChar();
     a.display();
     collide();
     a.move();
+    player.play();
 //}
 }

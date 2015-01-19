@@ -3,11 +3,12 @@ public class Hero {
   boolean collisionDown=false;
   boolean collisionLeft=false;
   boolean collisionRight=false;
+  boolean dead=false;
   float xlim=15;//half width of rect of hero to measure collision
   float ylim=35;//half height of rect of hero to measure collision
   int health;
   float x=200;
-  float y=200;
+  float y=500;
   float velocity=0;
   float gravity=-.4; 
   boolean gravityTrue= false;
@@ -23,6 +24,10 @@ public class Hero {
     //add noStroke() here
     fill(0, 0, 0, 0);
     rect(x, y, 0, 0);//rect is easier than ellipse for sprite
+  }
+  
+  boolean getDead(){
+   return dead; 
   }
   float getX() {
 
@@ -57,23 +62,28 @@ public class Hero {
       x=x-5;
     }
     if (right) {
+      if(x < width){
       x+=5;
+      }
     }
     //GRAVITY ANTI-GRAVITY
     if (gravityTrue) {
-      if (y < height-10 ) {
+      if (y < height + 50 ) {
 
         velocity = velocity +gravity;
         y=y+velocity;
         //collisionUp=false;
       }
     } else {
-      if (y > 10) {
+      if (y > -20) {
 
         velocity = velocity +gravity;
         y=y+velocity;
         // collisionDown=false;
       }
+    }
+    if(y < -20 || y > height + 50 || x < -5){
+     dead=true; 
     }
   }
 
