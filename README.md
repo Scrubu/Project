@@ -7,12 +7,15 @@ Anti-gravity platform game. <bl>
 <ul><li>
 Player cannot jump.</li>
 <li>Can only reverse gravity</li>
-<li>Similar to vvvvvv</li>
 </ul><br><br>
 Features:
 <ol>
-<li>obstacles</li>
-<li>Player must last as long as possible while avoiding obstacles, similar to gravity guy
+<li>Press 'A' and 'D' buttons to move left and right respectively</li>
+<li>Press spacebar to reverse gravity of yourself</li>
+<li>Press 'R' to restart map</li>
+<li>obstacles that try to collide with player</li>
+<li>Player must last as long as possible while avoiding obstacles, similar to gravity guy</li>
+<li>Score will increase the longer the player stays alive</li>
 </ol>
 
 January 7, 2015:<ul>
@@ -59,4 +62,18 @@ January 15, 2015<ul>
 January 17, 2015<ul>
 <li>worked more on collision</li>
 <li>implemented sprite</li>
+</ul><br><br>
+
+January 18, 2015<ul>
+<li>collision works now</li>
+<li>started obstacle moving from one side of map to other</li>
+<li>obstacles are generated randomly with random size</li>
+<li>Worked on having generated obstacles be put into array and looped to see if player is colliding</li>
+</ul><br><br>
+
+January 19, 2015<ul>
+<li>added player losing if he goes off the map</li>
+<li>implemented some aesthetics such as background, music, and sprites</li>
+<li>implemented score system based on survival time</li>
+<li>implemented a restart button</li>
 </ul><br><br>
