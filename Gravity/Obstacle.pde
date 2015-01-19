@@ -13,12 +13,12 @@ class Obstacle{
   Obstacle(){
   }
   void move(){
-   xcor-= 1; 
+   xcor-= 2; 
   }
   void display(){
      rectMode(CENTER);
-     stroke(0);
-     fill(50,50,50);
+     stroke(-5);
+     fill(0,0,0,90);
      rect(xcor,ycor,w,h);
   }
   float getX(){

@@ -1,19 +1,23 @@
 import java.util.Random;
-PImage img, img2, curs, intro;
+PImage img, img2, curs, intro,bg;
 boolean intro2;
+ArrayList<Obstacle> obs = new ArrayList<Obstacle>();
+Hero a=new Hero();
+Obstacle start = new Obstacle(200,100,1000,100);
+Obstacle start2= new Obstacle(200,300,1000,100);
 void setup() {
+  bg = loadImage("tsun2.jpg");
   img=loadImage("hat.png");
   img2=loadImage("hat2.png");
   curs=loadImage("curs.png");
   intro=loadImage("intro.jpg");
-  size(1000,562);
+  size(1280,716);
   smooth();
   intro2=true;
+  obs.add(start);
+  obs.add(start2);
 }
-ArrayList<Obstacle> obs = new ArrayList<Obstacle>();
 
-
-Hero a=new Hero();
 
 
 
@@ -36,7 +40,7 @@ a.collisionDown=false;
  }
 void keyReleased(){
    if (key== ' ' ){
-     a.setVel(0);
+     a.setVel();
      a.setGrav(-1);
 
     } 
@@ -75,14 +79,14 @@ void draw() {
 //    introduction();
 //  } else{
     Random rand = new Random();
-    background(55,88,100);
+    background(bg);
     noStroke();
     fill(255,10);
   //rect(0,0,width,height);
     stroke(0);
     fill(175);
   int num = rand.nextInt(100);
-  if(num<2){
+  if(num<5){
     int x = width;
     int y = rand.nextInt(height);
     int w = rand.nextInt(100)+20;
@@ -98,5 +102,5 @@ void draw() {
     a.display();
     collide();
     a.move();
- // }
+//}
 }
