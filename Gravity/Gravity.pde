@@ -1,5 +1,6 @@
+import java.util.Random;
 PImage img, img2, curs, intro;
-boolean intro;
+boolean intro2;
 void setup() {
   img=loadImage("hat.png");
   img2=loadImage("hat2.png");
@@ -7,54 +8,37 @@ void setup() {
   intro=loadImage("intro.jpg");
   size(1000,562);
   smooth();
-  
-  
+  intro2=true;
 }
 ArrayList<Obstacle> obs = new ArrayList<Obstacle>();
 
 
 Hero a=new Hero();
-Obstacle b,c;
+
 
 
  void keyPressed() {
   
   if(key== 'a' || key== 'A'){
-     a.collisionUp=false;
-     a.collisionDown=false;
-     a.collisionLeft=false;
-     a.collisionRight=false;
-     collide();
-     if (a.collisionUp || a.collisionDown){
+a.collisionUp=false;
+a.collisionDown=false;
        a.setLeft(true);
        a.setRight(false);
-     } else if(a.right){
-       a.setRight(false);
-     }
+
   }
   if(key== 'd' || key== 'D'){
-     a.collisionUp=false;
-     a.collisionDown=false;
-     a.collisionLeft=false;
-     a.collisionRight=false;
-     collide();
-     if (a.collisionUp || a.collisionDown){
+     
+
        a.setLeft(false);
        a.setRight(true);
-     } else if(a.right){
-       a.setLeft(false);
-     }
+
   }
  }
 void keyReleased(){
-   if (key== ' ' && (a.collisionUp || a.collisionDown)){
+   if (key== ' ' ){
      a.setVel(0);
      a.setGrav(-1);
-     a.collisionUp=false;
-     a.collisionDown=false;
-     a.collisionLeft=false;
-     a.collisionRight=false;
-     collide();
+
     } 
     if (key== 'a'||key=='A'){
         a.setLeft(false);
@@ -87,27 +71,32 @@ void introduction(){
   fill(175);
 }
 void draw() {
-  if (intro){
-    introduction();
-  } else{
+//  if (intro2){
+//    introduction();
+//  } else{
+    Random rand = new Random();
     background(55,88,100);
     noStroke();
     fill(255,10);
   //rect(0,0,width,height);
     stroke(0);
     fill(175);
-    b=new Obstacle(300,100,50,50);
-    b.display();
+  int num = rand.nextInt(100);
+  if(num<2){
+    int x = width;
+    int y = rand.nextInt(height);
+    int w = rand.nextInt(100)+20;
+    int h = rand.nextInt(100)+20;
+    Obstacle b = new Obstacle(x,y,w,h);
     obs.add(b);
-    c=new Obstacle(100,500,5000,50);
-    c.display();
-    obs.add(c);
-    Obstacle d=new Obstacle(500,100,5000,50);
-    d.display();
-    obs.add(d);
+  }
+  for(int x=0;x<obs.size();x++){
+    obs.get(x).move();
+   obs.get(x).display(); 
+  }
     drawChar();
     a.display();
     collide();
     a.move();
-  }
+ // }
 }

@@ -12,6 +12,9 @@ class Obstacle{
   }
   Obstacle(){
   }
+  void move(){
+   xcor-= 1; 
+  }
   void display(){
      rectMode(CENTER);
      stroke(0);
@@ -30,6 +33,5 @@ class Obstacle{
   float getH(){
    return h;
   }
-
-
 }
+
