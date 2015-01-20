@@ -1,14 +1,15 @@
-import java.util.Random;
+import java.util.*;
+import java.io.*;
 import ddf.minim.*;
 Minim minim;
-AudioPlayer player;
+AudioPlayer player, introMusic;
 PImage img, img2, curs, intro,bg;
 boolean intro2;
 ArrayList<Obstacle> obs;
 Hero a;
 Obstacle start;
 Obstacle start2;
-int highscore=0;
+int highscore=loadHS();
 int score;
 void setup() {
   minim=new Minim(this);
@@ -36,8 +37,8 @@ void setup() {
  void keyPressed() {
   
   if(key== 'a' || key== 'A'){
-a.collisionUp=false;
-a.collisionDown=false;
+       a.collisionUp=false;
+       a.collisionDown=false;
        a.setLeft(true);
        a.setRight(false);
 
@@ -53,8 +54,8 @@ a.collisionDown=false;
 void keyReleased(){
   if(key== 'r' || key == 'R'){
     player.close();
-  setup();
-  loop();
+    setup();
+    loop();
   }
    if (key== ' ' ){
      a.setVel();
@@ -69,6 +70,39 @@ void keyReleased(){
 
     }  
 }
+int loadHS(){
+  File HS=new File("highscore.txt");
+  int x;
+  try{
+    Scanner high=new Scanner(HS);
+    x=high.nextInt();
+    //println(x);
+  } catch (Exception e){
+    return 1;
+  }
+  return x;
+}
+void updateHS(){
+  try {
+    PrintWriter deleteHS = new PrintWriter("highscore.txt");
+    deleteHS.print("");
+    deleteHS.close();
+  } catch(Exception e){
+    println("fileNotFound");
+  }
+  BufferedReader b=new BufferedReader(new InputStreamReader(System.in)); 
+  File HS=new File("highscore.txt");
+  try {
+    b=new BufferedReader(new FileReader(HS));
+    FileWriter f=new FileWriter(HS, true);
+    f.append(String.valueOf(highscore));
+    b.close();
+    f.close();
+  } catch(Exception e){
+    println("fileNotFound");
+  }
+}
+  
 void collide(){
   for (int x=0;x<obs.size();x++){
      a.collision(obs.get(x));
@@ -97,10 +131,8 @@ void death(){
     text("EMBRACE DEATH OR",100,300);
     text("PRESS R TO RESTART", 100,500);
     fill(200,20,20);
- noLoop();
- if(highscore<score){
-  highscore=score; 
- }
+    noLoop();
+    updateHS();
   }
 }
 
@@ -129,7 +161,9 @@ void draw() {
   }
     score();
     score();
- 
+    if(highscore<score){
+       highscore=score; 
+    }
      for(int x=0;x<obs.size();x++){
     obs.get(x).move();
    obs.get(x).display(); 
