@@ -4,8 +4,9 @@ import ddf.minim.*;
 Minim minim;
 AudioPlayer player, introMusic;
 PImage img, img2, curs, intro,bg;
-boolean intro2;
+boolean intro2=true;
 ArrayList<Obstacle> obs;
+ArrayList<Obstacle> disp;
 Hero a;
 Obstacle start;
 Obstacle start2;
@@ -15,7 +16,8 @@ void setup() {
   minim=new Minim(this);
   player=minim.loadFile("song.mp3");
   score=0;
-  obs = new ArrayList<Obstacle>();
+  obs = new ArrayList<Obstacle>();  
+  disp = new ArrayList<Obstacle>();
   bg = loadImage("tsun2.jpg");
   img=loadImage("hat.png");
   img2=loadImage("hat2.png");
@@ -23,7 +25,7 @@ void setup() {
   intro=loadImage("intro.jpg");
   size(1280,716);
   smooth();
-  intro2=true;
+  //intro2=true;
   a=new Hero();
   if (intro2){
     start= new Obstacle(200,0,15000,100);
@@ -38,7 +40,12 @@ void setup() {
 
 
 
-
+void mouseClicked(){
+  if (intro2){
+    intro2=false;
+    setup();
+  }
+}
  void keyPressed() {
   
   if(key== 'a' || key== 'A'){
@@ -142,7 +149,9 @@ void death(){
 }
 
 void score(){
-  score+=1;
+  if (a.collisionDown || a.collisionUp){
+    score+=1;
+  }
   textSize(50);
 text("SCORE: "+score, 10, 100); 
 text("HIGHSCORE: "+highscore,10,200);
@@ -157,19 +166,23 @@ void draw() {
     if(intro2){
       intro.resize(width, height);
   background(intro);
-   int num = rand.nextInt(100);
+   int num = rand.nextInt(1000);
   if(num<5){
     int x = width;
-    int y = rand.nextInt(height-300)+400;
+    int y = rand.nextInt(height-300)+50;
     int w = rand.nextInt(100)+20;
     int h = rand.nextInt(100)+20;
     Obstacle b = new Obstacle(x,y,w,h);
-    obs.add(b);
+    disp.add(b);
   }
+ for(int x=0;x<disp.size();x++){
+  disp.get(x).move();
+   disp.get(x).display();  
+    }
     }else {
     background(bg);
     
-  int num = rand.nextInt(100);
+  int num = rand.nextInt(500);
   if(num<5){
     int x = width;
     int y = rand.nextInt(height);
