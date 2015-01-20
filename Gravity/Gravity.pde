@@ -4,7 +4,7 @@ import ddf.minim.*;
 Minim minim;
 AudioPlayer player, introMusic;
 PImage img, img2, curs, intro,bg;
-boolean intro2;
+boolean intro2, levels;
 ArrayList<Obstacle> obs;
 Hero a;
 Obstacle start;
@@ -12,9 +12,6 @@ Obstacle start2;
 int highscore=loadHS();
 int score;
 void setup() {
-  minim=new Minim(this);
-  player=minim.loadFile("song.mp3");
-  score=0;
   obs = new ArrayList<Obstacle>();
   bg = loadImage("tsun2.jpg");
   img=loadImage("hat.png");
@@ -24,15 +21,46 @@ void setup() {
   size(1280,716);
   smooth();
   intro2=true;
-  a=new Hero();
-  start= new Obstacle(200,100,1500,100);
-  start2= new Obstacle(200,700,1500,100);
-   obs.add(start);
-  obs.add(start2);
+  levels=false;
 }
 
 
-
+void unlimited(){
+  if(levels){
+    minim=new Minim(this);
+    player=minim.loadFile("song.mp3");
+    score=0;
+    obs.clear();
+    //a=new Hero();
+    start= new Obstacle(200,100,1500,100);
+    start2= new Obstacle(200,700,1500,100);
+    obs.add(start);
+    obs.add(start2);
+    Random rand = new Random();
+    background(bg);
+    int num = rand.nextInt(100);
+    if(num<5){
+      int x = width;
+      int y = rand.nextInt(height);
+      int w = rand.nextInt(100)+20;
+      int h = rand.nextInt(100)+20;
+      Obstacle b = new Obstacle(x,y,w,h);
+      obs.add(b);
+    }
+    score();
+    score();
+    if(highscore<score){
+       highscore=score; 
+    }
+    for(int x=0;x<obs.size();x++){
+      obs.get(x).move();
+      obs.get(x).display(); 
+    }   
+    death();
+    death();
+  }
+}
+  
 
  void keyPressed() {
   
@@ -54,7 +82,7 @@ void setup() {
 void keyReleased(){
   if(key== 'r' || key == 'R'){
     player.close();
-    setup();
+    unlimited();
     loop();
   }
    if (key== ' ' ){
@@ -116,14 +144,24 @@ void drawChar(){
   }
 }
 void introduction(){
-  intro.resize(width, height);
-  background(intro);
-  cursor(curs);
-  noStroke();
-  fill(255,10);
-  //rect(0,0,width,height);
-  stroke(0);    
-  fill(175);
+  if(intro2){
+    intro.resize(width, height);
+    background(intro);
+    cursor(curs);
+    noStroke();
+    fill(255,10);
+    //rect(0,0,width,height);
+    stroke(0);    
+    fill(175);
+    start= new Obstacle(200,100,1500,100);
+    start2= new Obstacle(200,700,1500,100);
+    obs.add(start);
+    obs.add(start2);
+    for(int x=0;x<obs.size();x++){
+      obs.get(x).move();
+      obs.get(x).display(); 
+    }  
+  }
 }
 void death(){
   if(a.getDead()==true){
@@ -145,35 +183,17 @@ fill(0, 102, 153);
 }
 
 void draw() {
-//  if (intro2){
-//    introduction();
-//  } else{
-    Random rand = new Random();
-    background(bg);
-  int num = rand.nextInt(100);
-  if(num<5){
-    int x = width;
-    int y = rand.nextInt(height);
-    int w = rand.nextInt(100)+20;
-    int h = rand.nextInt(100)+20;
-    Obstacle b = new Obstacle(x,y,w,h);
-    obs.add(b);
+  a=new Hero();
+  if (intro2){
+    println("wayez");
+    intro2=true;
+    introduction();
+  } else{
+    unlimited();
   }
-    score();
-    score();
-    if(highscore<score){
-       highscore=score; 
-    }
-     for(int x=0;x<obs.size();x++){
-    obs.get(x).move();
-   obs.get(x).display(); 
-  }   
-  death();
-    death();
-       drawChar();
-    a.display();
-    collide();
-    a.move();
-    player.play();
-//}
+  drawChar();
+  a.display();
+  collide();
+  a.move();
+  //player.play();
 }
