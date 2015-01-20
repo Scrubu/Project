@@ -27,7 +27,8 @@ void setup() {
   smooth();
   //intro2=true;
   a=new Hero();
-  if (intro2){
+  if (intro2){        
+    PFont gravy=loadFont("Bauhaus93-48.vlw");
     start= new Obstacle(200,0,15000,100);
     start2= new Obstacle(200,700,15000,400);
   } else{
@@ -36,8 +37,10 @@ void setup() {
   }
    obs.add(start);
   obs.add(start2);
+  //size(200, 200);
+  //String[] fontList = PFont.list();
+  //println(fontList);
 }
-
 
 
 void mouseClicked(){
@@ -157,17 +160,24 @@ text("SCORE: "+score, 10, 100);
 text("HIGHSCORE: "+highscore,10,200);
 fill(0, 102, 153);
 }
+void title(){
+  //textFont(gravy, 100);
+  textSize(100);
+  text("Gravity",100,300);
+  fill(0, 102, 153);
+}
 
 void draw() {
 //  if (intro2){
 //    introduction();
 //  } else{
-    Random rand = new Random();
-    if(intro2){
-      intro.resize(width, height);
-  background(intro);
-   int num = rand.nextInt(1000);
-  if(num<5){
+  Random rand = new Random();
+  if(intro2){
+    intro.resize(width, height);
+    background(intro);
+    title();
+    int num = rand.nextInt(1000);
+    if(num<5){
     int x = width;
     int y = rand.nextInt(height-300)+50;
     int w = rand.nextInt(100)+20;
