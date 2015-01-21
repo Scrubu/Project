@@ -6,6 +6,7 @@ AudioPlayer player, introMusic;
 PImage img, img2, curs, intro, bg, bg2;
 PFont gravy, reg, end;
 boolean intro2=true;
+boolean freq;
 ArrayList<Obstacle> obs;
 ArrayList<Obstacle> disp;
 ArrayList<PowerUp> pwr;
@@ -15,18 +16,21 @@ Obstacle start2;
 int highscore=loadHS();
 int score;
 int frequency = 1000;
+int life;
 void setup() {
   minim=new Minim(this);
   player=minim.loadFile("song.mp3");
   score=0;
   obs = new ArrayList<Obstacle>();  
   disp = new ArrayList<Obstacle>();
+  pwr = new ArrayList<PowerUp>();
   bg = loadImage("tsun2.jpg");
   bg2= loadImage("tsun.jpg");
   img=loadImage("hat.png");
   img2=loadImage("hat2.png");
   curs=loadImage("curs.png");
   intro=loadImage("intro.jpg");
+  freq=false;
   size(1280,716);
   smooth();
   //intro2=true;
@@ -127,6 +131,9 @@ void collide(){
   for (int x=0;x<obs.size();x++){
      a.collision(obs.get(x));
   }
+  for (int y=0;y<pwr.size();y++){
+    a.powerCollision(pwr.get(y));
+  }
 }
 void drawChar(){
   if (a.gravityTrue){
@@ -140,6 +147,7 @@ void death(){
   if(a.getDead()==true){
     bg2.resize(width, height);
     obs.clear();
+    pwr.clear();
     background(bg2);
     textFont(gravy, 125);
     text("EMBRACE DEATH OR",50,300);
@@ -187,6 +195,27 @@ void title(){
   fill(#CC0000);
 }
 
+void usePowerUP(){
+   if (a.pwrup=="100"){
+     score+=100;
+     a.pwrup="";
+   }
+   if (a.pwrup=="250"){
+     score+=250;
+     a.pwrup="";
+   }
+   if (a.pwrup=="500"){
+     score+=500;
+     a.pwrup="";
+   }
+   if (a.pwrup=="freq"){
+     freq=true;
+     a.pwrup="";
+   }
+   if (a.pwrup=="dead"){
+     life+=1;
+     a.pwrup="";
+   }
 void draw() {
   Random rand = new Random();
   if(intro2){
@@ -218,6 +247,16 @@ void draw() {
       Obstacle b = new Obstacle(x,y,w,h);
       obs.add(b);
     }
+    Random rand2=new Random();
+    Random rand3=new Random();
+    int numPwr = rand2.nextInt(5000);
+    int power = rand3.nextInt(26);
+    if(numPwr<5){
+      int x = width;
+      int y = rand.nextInt(height);
+      PowerUp c = new PowerUp(x,y,power);
+      pwr.add(c);
+    }
     if(highscore<score){
        highscore=score; 
     }
@@ -227,6 +266,10 @@ void draw() {
   for(int x=0;x<obs.size();x++){
     obs.get(x).move();
     obs.get(x).display(); 
+  }  
+  for(int y=0;y<pwr.size();y++){
+    pwr.get(y).move();
+    pwr.get(y).display(); 
   }   
   drawChar();
   a.display();
@@ -234,6 +277,7 @@ void draw() {
   if (!intro2){
      score();
      score();
+     usePowerUp();
   }
   a.move();
   player.play();

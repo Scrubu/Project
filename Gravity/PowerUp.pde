@@ -1,6 +1,6 @@
-class Powerup extends Obstacle{
+class PowerUp extends Obstacle{
   String type;
-  Powerup(float x, float y, int type){
+  PowerUp(float x, float y, int type){
    xcor=x;
    ycor=y;
    if (type==0){

@@ -14,6 +14,7 @@ public class Hero {
   boolean gravityTrue= false;
   boolean left = false;
   boolean right = false;
+  String pwrup="";
 
 
   public Hero() {
@@ -84,6 +85,15 @@ public class Hero {
     }
     if(y < -20 || y > height + 50 || x < -5){
      dead=true; 
+    }
+  }
+  void PowerCollision(PowerUp a){
+    float xlimit1 = a.getX() + 12.5;
+    float xlimit2 = a.getX() - 12.5;
+    float ylimit1 = a.getY()+ 12.5;
+    float ylimit2 = a.getY() - 12.5;
+    if (x<xlimit+1 && x>xlimit2-1 && y<ylimit1+1 && y>ylimit2-1){
+      pwrup=a.type();
     }
   }
 
