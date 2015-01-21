@@ -3,7 +3,8 @@ import java.io.*;
 import ddf.minim.*;
 Minim minim;
 AudioPlayer player, introMusic;
-PImage img, img2, curs, intro,bg;
+PImage img, img2, curs, intro, bg;
+PFont gravy, reg;
 boolean intro2=true;
 ArrayList<Obstacle> obs;
 ArrayList<Obstacle> disp;
@@ -28,7 +29,8 @@ void setup() {
   //intro2=true;
   a=new Hero();
   if (intro2){        
-    PFont gravy=loadFont("Bauhaus93-48.vlw");
+    gravy=loadFont("Bauhaus93-48.vlw");
+    reg=loadFont("AngsanaNew-48.vlw");
     start= new Obstacle(200,0,15000,100);
     start2= new Obstacle(200,700,15000,400);
   } else{
@@ -36,7 +38,7 @@ void setup() {
     start2= new Obstacle(200,700,1500,100);
   }
    obs.add(start);
-  obs.add(start2);
+   obs.add(start2);
   //size(200, 200);
   //String[] fontList = PFont.list();
   //println(fontList);
@@ -130,16 +132,7 @@ void drawChar(){
     image(img2,a.getX()-img2.width/2,a.getY()-img2.height/2);
   }
 }
-void introduction(){
-  intro.resize(width, height);
-  background(intro);
-  cursor(curs);
-  noStroke();
-  fill(255,10);
-  //rect(0,0,width,height);
-  stroke(0);    
-  fill(175);
-}
+
 void death(){
   if(a.getDead()==true){
     textSize(100);
@@ -150,76 +143,72 @@ void death(){
     updateHS();
   }
 }
-
 void score(){
-  if (a.collisionDown || a.collisionUp){
+  if (a.velocity==0){
     score+=1;
+    //println("turtle");
   }
   textSize(50);
-text("SCORE: "+score, 10, 100); 
-text("HIGHSCORE: "+highscore,10,200);
-fill(0, 102, 153);
+  text("SCORE: "+score, 10, 100); 
+  text("HIGHSCORE: "+highscore,10,200);
+  fill(0, 102, 153);
 }
 void title(){
-  //textFont(gravy, 100);
-  textSize(100);
-  text("Gravity",100,300);
-  fill(0, 102, 153);
+  textFont(gravy, 200);
+  text("Gravity",350,200);
+  fill(#FFFFFF);
+  textFont(reg, 50);
+  text("Created by Java", 550, 250);
+  text("Click anywhere to start", 490, 550);
+  fill(#CC0000);
 }
 
 void draw() {
-//  if (intro2){
-//    introduction();
-//  } else{
   Random rand = new Random();
   if(intro2){
     intro.resize(width, height);
     background(intro);
     title();
+    title();
     int num = rand.nextInt(1000);
     if(num<5){
-    int x = width;
-    int y = rand.nextInt(height-300)+50;
-    int w = rand.nextInt(100)+20;
-    int h = rand.nextInt(100)+20;
-    Obstacle b = new Obstacle(x,y,w,h);
-    disp.add(b);
-  }
- for(int x=0;x<disp.size();x++){
-  disp.get(x).move();
-   disp.get(x).display();  
+      int x = width;
+      int y = rand.nextInt(height-300)+50;
+      int w = rand.nextInt(100)+20;
+      int h = rand.nextInt(100)+20;
+      Obstacle b = new Obstacle(x,y,w,h);
+      disp.add(b);
     }
-    }else {
+    for(int x=0;x<disp.size();x++){
+      disp.get(x).move();
+      disp.get(x).display();  
+    }
+  } else {
     background(bg);
-    
-  int num = rand.nextInt(500);
-  if(num<5){
-    int x = width;
-    int y = rand.nextInt(height);
-    int w = rand.nextInt(100)+20;
-    int h = rand.nextInt(100)+20;
-    Obstacle b = new Obstacle(x,y,w,h);
-    obs.add(b);
-  }
-    
-    
-    score();
-    score();
+    int num = rand.nextInt(500);
+    if(num<5){
+      int x = width;
+      int y = rand.nextInt(height);
+      int w = rand.nextInt(100)+20;
+      int h = rand.nextInt(100)+20;
+      Obstacle b = new Obstacle(x,y,w,h);
+      obs.add(b);
+    }
     if(highscore<score){
        highscore=score; 
     }
-     
-  death();
+    score();
+    score();
     death();
-    }
-    for(int x=0;x<obs.size();x++){
+    death();
+  }
+  for(int x=0;x<obs.size();x++){
     obs.get(x).move();
-   obs.get(x).display(); 
+    obs.get(x).display(); 
   }   
-       drawChar();
-    a.display();
-    collide();
-    a.move();
-    player.play();
-//}
+  drawChar();
+  a.display();
+  collide();
+  a.move();
+  player.play();
 }
