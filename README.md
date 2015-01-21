@@ -95,4 +95,5 @@ January 20, 2015<ul>
 <li>added frequency variable to limit amount of obstacles as player progresses</li>
 <li>implemented a life system, player now starts off with 3 lives</li>
 <li>fixed audio bug</li>
+<li>bug found where occasionally player does not die when falls off screen unless spacebar is pressed, not sure how to fix</li>
 </ul><br><br>
