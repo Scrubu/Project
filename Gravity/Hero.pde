@@ -10,7 +10,7 @@ public class Hero {
   float x=200;
   float y=500;
   float velocity=0;
-  float gravity=-.4; 
+  float gravity=-.3; 
   boolean gravityTrue= false;
   boolean left = false;
   boolean right = false;
@@ -48,8 +48,20 @@ public class Hero {
       velocity=-3;
     }
     else{
+      if(velocity>0){
     velocity=3;
     }
+    else{
+      if(collisionUp){
+        velocity=-3;
+      }
+      else{
+        if(collisionDown){
+        velocity=3;
+        }
+      }
+    }
+  }
   }
   void setGrav(float x) {
     gravity= gravity * x; 
@@ -138,8 +150,8 @@ if(y < -30 || y > height + 50 || x < -5){
       y=ylimit1+30;
     }
     else if (collisionDown && !collisionUp) {
-      y=ylimit2-30; 
       velocity=0;
+      y=ylimit2-30; 
     }
 
   }
