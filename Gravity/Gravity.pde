@@ -3,8 +3,8 @@ import java.io.*;
 import ddf.minim.*;
 Minim minim;
 AudioPlayer player, introMusic;
-PImage img, img2, curs, intro, bg;
-PFont gravy, reg;
+PImage img, img2, curs, intro, bg, bg2;
+PFont gravy, reg, end;
 boolean intro2=true;
 ArrayList<Obstacle> obs;
 ArrayList<Obstacle> disp;
@@ -21,6 +21,7 @@ void setup() {
   obs = new ArrayList<Obstacle>();  
   disp = new ArrayList<Obstacle>();
   bg = loadImage("tsun2.jpg");
+  bg2= loadImage("tsun.jpg");
   img=loadImage("hat.png");
   img2=loadImage("hat2.png");
   curs=loadImage("curs.png");
@@ -136,9 +137,12 @@ void drawChar(){
 
 void death(){
   if(a.getDead()==true){
-    textSize(100);
-    text("EMBRACE DEATH OR",100,300);
-    text("PRESS R TO RESTART", 100,500);
+    bg2.resize(width, height);
+    obs.clear();
+    background(bg2);
+    textFont(gravy, 125);
+    text("EMBRACE DEATH OR",50,300);
+    text("PRESS R TO RESTART", 50,500);
     fill(200,20,20);
     noLoop();
     updateHS();
