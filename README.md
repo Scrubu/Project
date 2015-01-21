@@ -19,13 +19,13 @@ Features:
 <li>Powerups randomly spawn, increase score, spawn more obstacles or gives more lives</li>
 <li>Player starts with three lives</li>
 </ol><br><br>
-Power-ups:<ol>
+Power-ups:<ul>
 <li>light green: +100 to score</li>
 <li>green: +250 to score</li>
 <li>dark green: +500 to score</li>
-<li>purple: more obstacles<li>
+<li>purple: more obstacles</li>
 <li>red: +1 life </li>
-</ol><br><br>
+</ul><br><br>
 
 
 January 7, 2015:<ul>
