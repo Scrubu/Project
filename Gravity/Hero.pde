@@ -57,7 +57,9 @@ public class Hero {
   }
 
   void move() { 
-
+if(y < -30 || y > height + 50 || x < -5){
+     dead=true; 
+    }
     //LEFT AND RIGHT KEYS
     if (left) {      
       x=x-5;
@@ -82,9 +84,6 @@ public class Hero {
         y=y+velocity;
         // collisionDown=false;
       }
-    }
-    if(y < -20 || y > height + 50 || x < -5){
-     dead=true; 
     }
   }
   void powerCollision(PowerUp a){

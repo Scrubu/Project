@@ -32,87 +32,86 @@ void setup() {
   curs=loadImage("curs.png");
   intro=loadImage("intro.jpg");
   freq=false;
-  size(1280,716);
+  size(1280, 716);
   smooth();
   //intro2=true;
   a=new Hero();
-  if (intro2){        
+  if (intro2) {        
     gravy=loadFont("Bauhaus93-48.vlw");
     reg=loadFont("AngsanaNew-48.vlw");
-    start= new Obstacle(-100,0,15000,100);
-    start2= new Obstacle(200,700,15000,400);
-  } else{
-    start= new Obstacle(200,100,1500,100);
-    start2= new Obstacle(200,700,1500,100);
+    start= new Obstacle(-100, 0, 15000, 100);
+    start2= new Obstacle(200, 700, 15000, 400);
+  } else {
+    start= new Obstacle(200, 100, 1500, 100);
+    start2= new Obstacle(200, 700, 1500, 100);
   }
-   obs.add(start);
-   obs.add(start2);
+  obs.add(start);
+  obs.add(start2);
   //size(200, 200);
   //String[] fontList = PFont.list();
   //println(fontList);
 }
 
 
-void mouseClicked(){
-  if (intro2){
+void mouseClicked() {
+  if (intro2) {
     intro2=false;
+    player.close();
     setup();
   }
 }
- void keyPressed() {
-  
-  if(key== 'a' || key== 'A'){
-       a.collisionUp=false;
-       a.collisionDown=false;
-       a.setLeft(true);
-       a.setRight(false);
+void keyPressed() {
 
+  if (key== 'a' || key== 'A') {
+    a.collisionUp=false;
+    a.collisionDown=false;
+    a.setLeft(true);
+    a.setRight(false);
   }
-  if(key== 'd' || key== 'D'){
-     
+  if (key== 'd' || key== 'D') {
 
-       a.setLeft(false);
-       a.setRight(true);
 
+    a.setLeft(false);
+    a.setRight(true);
   }
- }
-void keyReleased(){
-  if(key== 'r' || key == 'R'){
+}
+void keyReleased() {
+  if (key== 'r' || key == 'R') {
     player.close();
     setup();
     loop();
   }
-   if (key== ' ' ){
-     a.setVel();
-     a.setGrav(-1);
-
-    } 
-    if (key== 'a'||key=='A'){
-        a.setLeft(false);
-    }
-    if (key == 'd' || key =='D'){
-        a.setRight(false);
-
-    }  
+  if (key== ' ' ) {
+    a.setVel();
+    a.setGrav(-1);
+  } 
+  if (key== 'a'||key=='A') {
+    a.setLeft(false);
+  }
+  if (key == 'd' || key =='D') {
+    a.setRight(false);
+  }
 }
-int loadHS(){
+int loadHS() {
   File HS=new File("highscore.txt");
   int x;
-  try{
+  try {
     Scanner high=new Scanner(HS);
     x=high.nextInt();
     //println(x);
-  } catch (Exception e){
+  } 
+  catch (Exception e) {
     return 1;
   }
   return x;
 }
-void updateHS(){
+void updateHS() {
   try {
     PrintWriter deleteHS = new PrintWriter("highscore.txt");
     deleteHS.print("");
     deleteHS.close();
-  } catch(Exception e){
+  } 
+  catch(Exception e) {
     println("fileNotFound");
   }
   BufferedReader b=new BufferedReader(new InputStreamReader(System.in)); 
@@ -123,92 +122,92 @@ void updateHS(){
     f.append(String.valueOf(highscore));
     b.close();
     f.close();
-  } catch(Exception e){
+  } 
+  catch(Exception e) {
     println("fileNotFound");
   }
 }
-  
-void collide(){
-  for (int x=0;x<obs.size();x++){
-     a.collision(obs.get(x));
+
+void collide() {
+  for (int x=0; x<obs.size (); x++) {
+    a.collision(obs.get(x));
   }
-  for (int y=0;y<pwr.size();y++){
+  for (int y=0; y<pwr.size (); y++) {
     a.powerCollision(pwr.get(y));
-    if (!a.pwrup.equals("")){
+    if (!a.pwrup.equals("")) {
       pwr.remove(y);
       y--;
     }
   }
 }
-void drawChar(){
-  if (a.gravityTrue){
-    image(img,a.getX()-img.width/2,a.getY()-img.height/2);
+void drawChar() {
+  if (a.gravityTrue) {
+    image(img, a.getX()-img.width/2, a.getY()-img.height/2);
   } else {
-    image(img2,a.getX()-img2.width/2,a.getY()-img2.height/2);
+    image(img2, a.getX()-img2.width/2, a.getY()-img2.height/2);
   }
 }
 
-void death(){
-  if(a.getDead()==true){
-    if (life==0){
+void death() {
+  if (a.getDead()==true) {
+    if (life==0) {
+      if (highscore<score) {
+        highscore=score;
+      }
       bg2.resize(width, height);
       obs.clear();
       pwr.clear();
       background(bg2);
       textFont(gravy, 125);
-      text("EMBRACE DEATH OR",50,300);
-      text("PRESS R TO RESTART", 50,500);
-      fill(200,20,20);
+      text("PRESS R TO RESTART", 50, 600);
+      fill(#FFFFFF);
       noLoop();
       updateHS();
     } else {
-      obs.clear();
       pwr.clear();
       a=new Hero();
       life-=1;
     }
   }
 }
-void lifeDisplay(){
+void lifeDisplay() {
   textSize(50);
-  text("LIVES: "+life, 1100, 100);
+  text("LIVES: "+life, 10, 300);
   fill(0, 102, 153);
 }
-void score(){
-  if (a.velocity==0){
-    score+=1;
-    //println("turtle");
-  }
+void score() {
+
+  score+=1;
   calcFrequency();
   textSize(50);
   text("SCORE: "+score, 10, 100); 
-  text("HIGHSCORE: "+highscore,10,200);
+  text("HIGHSCORE: "+highscore, 10, 200);
   fill(0, 102, 153);
 }
-void calcFrequency(){
-  if (freq){
+void calcFrequency() {
+  if (freq) {
     frequency=250;
   } else {
-    if (score<200){
+    if (score<200) {
+      frequency=80;
+    } else if (score<3000) {
+      frequency=90;
+    } else if (score<6000) {
       frequency=100;
-    } else if (score<400){
+    } else if (score<9000) {
+      frequency=150;
+    } else if (score<12000) {
       frequency=200;
-    } else if (score<900){
-      frequency=300;
-    }else if (score<1600){
-      frequency=400;
-    }else if (score<2500){
-      frequency=500;
-    }else if (score<3600){
+    } else if (score<15000) {
       frequency=600;
-    }else {
-      frequency=1000;
+    } else {
+      frequency=100;
     }
   }
 }
-void title(){
-  textFont(gravy, 200);
-  text("Gravity",350,200);
+void title() {
+  textFont(gravy, 150);
+  text("Gravity Pooding", 100, 200);
   fill(#FFFFFF);
   textFont(reg, 50);
   text("Created by Java", 550, 250);
@@ -216,93 +215,93 @@ void title(){
   fill(#CC0000);
 }
 
-void usePowerUp(){
-   if (a.pwrup=="100"){
-     score+=100;
-     a.pwrup="";
-   }
-   if (a.pwrup=="250"){
-     score+=250;
-     a.pwrup="";
-   }
-   if (a.pwrup=="500"){
-     score+=500;
-     a.pwrup="";
-   }
-   if (a.pwrup=="freq"){
-     freq=true;
-     a.pwrup="";
-   }
-   if (a.pwrup=="life"){
-     life+=1;
-     a.pwrup="";
-   }
+void usePowerUp() {
+  if (a.pwrup=="100") {
+    score+=100;
+    a.pwrup="";
+  }
+  if (a.pwrup=="250") {
+    score+=250;
+    a.pwrup="";
+  }
+  if (a.pwrup=="500") {
+    score+=500;
+    a.pwrup="";
+  }
+  if (a.pwrup=="freq") {
+    freq=true;
+    a.pwrup="";
+  }
+  if (a.pwrup=="life") {
+    life+=1;
+    a.pwrup="";
+  }
 }
 void draw() {
   Random rand = new Random();
-  if(intro2){
+  if (intro2) {
     intro.resize(width, height);
     background(intro);
     title();
     title();
     int num = rand.nextInt(1000);
-    if(num<5){
+    if (num<5) {
       int x = width;
       int y = rand.nextInt(height-300)+50;
       int w = rand.nextInt(100)+20;
       int h = rand.nextInt(100)+20;
-      Obstacle b = new Obstacle(x,y,w,h);
+      Obstacle b = new Obstacle(x, y, w, h);
       disp.add(b);
     }
-    for(int x=0;x<disp.size();x++){
+    for (int x=0; x<disp.size (); x++) {
+    a.collision(disp.get(x));
+  }
+    for (int x=0; x<disp.size (); x++) {
       disp.get(x).move();
-      disp.get(x).display();  
+      disp.get(x).display();
     }
   } else {
     background(bg);
     int num = rand.nextInt(frequency);
-    if(num<5){
+    if (num<5) {
       int x = width;
       int y = rand.nextInt(height);
       int w = rand.nextInt(100)+20;
       int h = rand.nextInt(100)+20;
-      Obstacle b = new Obstacle(x,y,w,h);
+      Obstacle b = new Obstacle(x, y, w, h);
       obs.add(b);
+    }
+    if (!intro2) {
+      lifeDisplay();
+      lifeDisplay();
+      score();
+      usePowerUp();
     }
     Random rand2=new Random();
     Random rand3=new Random();
     int numPwr = rand2.nextInt(5000);
     int power = rand3.nextInt(26);
-    if(numPwr<5){
+    if (numPwr<5) {
       int x = width;
       int y = rand.nextInt(height);
-      PowerUp c = new PowerUp(x,y,power);
+      PowerUp c = new PowerUp(x, y, power);
       pwr.add(c);
     }
-    if(highscore<score){
-       highscore=score; 
-    }
-    death();
-    death();
   }
-  for(int x=0;x<obs.size();x++){
+  for (int x=0; x<obs.size (); x++) {
     obs.get(x).move();
-    obs.get(x).display(); 
+    obs.get(x).display();
   }  
-  for(int y=0;y<pwr.size();y++){
+  for (int y=0; y<pwr.size (); y++) {
     pwr.get(y).move();
-    pwr.get(y).display(); 
+    pwr.get(y).display();
   }   
+  death();
+  death();
+  a.move();
   drawChar();
   a.display();
   collide();
-  if (!intro2){
-     lifeDisplay();
-     lifeDisplay();
-     score();
-     score();
-     usePowerUp();
-  }
-  a.move();
   player.play();
 }
+
