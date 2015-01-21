@@ -197,8 +197,6 @@ void draw() {
     if(highscore<score){
        highscore=score; 
     }
-    score();
-    score();
     death();
     death();
   }
@@ -209,6 +207,10 @@ void draw() {
   drawChar();
   a.display();
   collide();
+  if (!intro2){
+     score();
+     score();
+  }
   a.move();
   player.play();
 }
