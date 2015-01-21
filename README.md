@@ -16,6 +16,8 @@ Features:
 <li>obstacles that try to collide with player</li>
 <li>Player must last as long as possible while avoiding obstacles, similar to gravity guy</li>
 <li>Score will increase the longer the player stays alive</li>
+<li>Powerups randomly spawn, increase score, spawn more obstacles or gives more lives</li>
+<li>Player starts with three lives</li>
 </ol>
 
 January 7, 2015:<ul>
@@ -72,6 +74,7 @@ January 18, 2015<ul>
 <li>started obstacle moving from one side of map to other</li>
 <li>obstacles are generated randomly with random size</li>
 <li>Worked on having generated obstacles be put into array and looped to see if player is colliding</li>
+<li>player now rotates when gravity is reversed</li>
 </ul><br><br>
 
 January 19, 2015<ul>
@@ -80,4 +83,16 @@ January 19, 2015<ul>
 <li>music track is 20 minutes long</li>
 <li>implemented score system based on survival time, highscore will be recorded</li>
 <li>implemented a restart button</li>
+<li>started introduction screen</li>
+<li>changed score system to be based on time in contact with obstacles</li>
+<improved on high score system to save on txt file</li>
+</ul><br><br>
+
+January 20, 2015<ul>
+<li>finished introduction screen</li>
+<li>added power-ups</li>
+<li>fixed score bug</li>
+<li>added frequency variable to limit amount of obstacles as player progresses</li>
+<li>implemented a life system, player now starts off with 3 lives</li>
+<li>fixed audio bug</li>
 </ul><br><br>
