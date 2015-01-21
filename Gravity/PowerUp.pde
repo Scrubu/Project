@@ -3,7 +3,7 @@ class PowerUp extends Obstacle{
   PowerUp(float x, float y, int type){
    xcor=x;
    ycor=y;
-   if (type==0){
+   if (type<2){
      this.type="life";
    } else if (type<11){
      this.type="100";
@@ -30,9 +30,9 @@ class PowerUp extends Obstacle{
      if (type=="freq"){
        fill(#9900CC);
      }
-     if (type=="dead"){
+     if (type=="life"){
        fill(#FF0000);
      }
-     ellipse(xcor,ycor, 25, 25);
+     ellipse(xcor,ycor, 50, 50);
   }
 }

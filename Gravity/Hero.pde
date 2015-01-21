@@ -88,10 +88,10 @@ public class Hero {
     }
   }
   void powerCollision(PowerUp a){
-    float xlimit1 = a.getX() + 12.5;
-    float xlimit2 = a.getX() - 12.5;
-    float ylimit1 = a.getY()+ 12.5;
-    float ylimit2 = a.getY() - 12.5;
+    float xlimit1 = a.getX() + 25;
+    float xlimit2 = a.getX() - 25;
+    float ylimit1 = a.getY()+ 25;
+    float ylimit2 = a.getY() - 25;
     if (x<xlimit1+1 && x>xlimit2-1 && y<ylimit1+1 && y>ylimit2-1){
       pwrup=a.type;
     }

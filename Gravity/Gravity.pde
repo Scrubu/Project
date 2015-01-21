@@ -39,13 +39,13 @@ void setup() {
   if (intro2){        
     gravy=loadFont("Bauhaus93-48.vlw");
     reg=loadFont("AngsanaNew-48.vlw");
-    //start= new Obstacle(200,0,15000,100);
+    start= new Obstacle(-100,0,15000,100);
     start2= new Obstacle(200,700,15000,400);
   } else{
     start= new Obstacle(200,100,1500,100);
     start2= new Obstacle(200,700,1500,100);
-    obs.add(start);
   }
+   obs.add(start);
    obs.add(start2);
   //size(200, 200);
   //String[] fontList = PFont.list();
@@ -137,7 +137,6 @@ void collide(){
     if (!a.pwrup.equals("")){
       pwr.remove(y);
       y--;
-      println(a.pwrup); 
     }
   }
 }
@@ -272,7 +271,7 @@ void draw() {
     }
     Random rand2=new Random();
     Random rand3=new Random();
-    int numPwr = rand2.nextInt(500);
+    int numPwr = rand2.nextInt(5000);
     int power = rand3.nextInt(26);
     if(numPwr<5){
       int x = width;
