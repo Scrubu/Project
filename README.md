@@ -18,7 +18,15 @@ Features:
 <li>Score will increase the longer the player stays alive</li>
 <li>Powerups randomly spawn, increase score, spawn more obstacles or gives more lives</li>
 <li>Player starts with three lives</li>
-</ol>
+</ol><br><br>
+Power-ups:<ol>
+<li>light green: +100 to score</li>
+<li>green: +250 to score</li>
+<li>dark green: +500 to score</li>
+<li>purple: more obstacles<li>
+<li>red: +1 life </li>
+</ol><br><br>
+
 
 January 7, 2015:<ul>
 <li>Created processing file Gravity.pde</li>
