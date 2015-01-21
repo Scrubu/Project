@@ -8,6 +8,7 @@ PFont gravy, reg, end;
 boolean intro2=true;
 ArrayList<Obstacle> obs;
 ArrayList<Obstacle> disp;
+ArrayList<PowerUp> pwr;
 Hero a;
 Obstacle start;
 Obstacle start2;
