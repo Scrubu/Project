@@ -21,6 +21,7 @@ void setup() {
   minim=new Minim(this);
   player=minim.loadFile("song.mp3");
   score=0;
+  life=3;
   obs = new ArrayList<Obstacle>();  
   disp = new ArrayList<Obstacle>();
   pwr = new ArrayList<PowerUp>();
@@ -133,6 +134,11 @@ void collide(){
   }
   for (int y=0;y<pwr.size();y++){
     a.powerCollision(pwr.get(y));
+    if (!a.pwrup.equals("")){
+      pwr.remove(y);
+      y--;
+      println(a.pwrup); 
+    }
   }
 }
 void drawChar(){
@@ -145,17 +151,29 @@ void drawChar(){
 
 void death(){
   if(a.getDead()==true){
-    bg2.resize(width, height);
-    obs.clear();
-    pwr.clear();
-    background(bg2);
-    textFont(gravy, 125);
-    text("EMBRACE DEATH OR",50,300);
-    text("PRESS R TO RESTART", 50,500);
-    fill(200,20,20);
-    noLoop();
-    updateHS();
+    if (life==0){
+      bg2.resize(width, height);
+      obs.clear();
+      pwr.clear();
+      background(bg2);
+      textFont(gravy, 125);
+      text("EMBRACE DEATH OR",50,300);
+      text("PRESS R TO RESTART", 50,500);
+      fill(200,20,20);
+      noLoop();
+      updateHS();
+    } else {
+      obs.clear();
+      pwr.clear();
+      a=new Hero();
+      life-=1;
+    }
   }
+}
+void lifeDisplay(){
+  textSize(50);
+  text("LIVES: "+life, 1100, 100);
+  fill(0, 102, 153);
 }
 void score(){
   if (a.velocity==0){
@@ -169,20 +187,24 @@ void score(){
   fill(0, 102, 153);
 }
 void calcFrequency(){
-  if (score<200){
-    frequency=100;
-  } else if (score<400){
-    frequency=200;
-  } else if (score<900){
-    frequency=300;
-  }else if (score<1600){
-    frequency=400;
-  }else if (score<2500){
-    frequency=500;
-  }else if (score<3600){
-    frequency=600;
-  }else {
-    frequency=1000;
+  if (freq){
+    frequency=250;
+  } else {
+    if (score<200){
+      frequency=100;
+    } else if (score<400){
+      frequency=200;
+    } else if (score<900){
+      frequency=300;
+    }else if (score<1600){
+      frequency=400;
+    }else if (score<2500){
+      frequency=500;
+    }else if (score<3600){
+      frequency=600;
+    }else {
+      frequency=1000;
+    }
   }
 }
 void title(){
@@ -195,7 +217,7 @@ void title(){
   fill(#CC0000);
 }
 
-void usePowerUP(){
+void usePowerUp(){
    if (a.pwrup=="100"){
      score+=100;
      a.pwrup="";
@@ -212,10 +234,11 @@ void usePowerUP(){
      freq=true;
      a.pwrup="";
    }
-   if (a.pwrup=="dead"){
+   if (a.pwrup=="life"){
      life+=1;
      a.pwrup="";
    }
+}
 void draw() {
   Random rand = new Random();
   if(intro2){
@@ -249,7 +272,7 @@ void draw() {
     }
     Random rand2=new Random();
     Random rand3=new Random();
-    int numPwr = rand2.nextInt(5000);
+    int numPwr = rand2.nextInt(500);
     int power = rand3.nextInt(26);
     if(numPwr<5){
       int x = width;
@@ -275,6 +298,8 @@ void draw() {
   a.display();
   collide();
   if (!intro2){
+     lifeDisplay();
+     lifeDisplay();
      score();
      score();
      usePowerUp();
