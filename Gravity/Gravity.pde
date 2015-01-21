@@ -13,6 +13,7 @@ Obstacle start;
 Obstacle start2;
 int highscore=loadHS();
 int score;
+int frequency = 1000;
 void setup() {
   minim=new Minim(this);
   player=minim.loadFile("song.mp3");
@@ -31,13 +32,13 @@ void setup() {
   if (intro2){        
     gravy=loadFont("Bauhaus93-48.vlw");
     reg=loadFont("AngsanaNew-48.vlw");
-    start= new Obstacle(200,0,15000,100);
+    //start= new Obstacle(200,0,15000,100);
     start2= new Obstacle(200,700,15000,400);
   } else{
     start= new Obstacle(200,100,1500,100);
     start2= new Obstacle(200,700,1500,100);
+    obs.add(start);
   }
-   obs.add(start);
    obs.add(start2);
   //size(200, 200);
   //String[] fontList = PFont.list();
@@ -148,10 +149,28 @@ void score(){
     score+=1;
     //println("turtle");
   }
+  calcFrequency();
   textSize(50);
   text("SCORE: "+score, 10, 100); 
   text("HIGHSCORE: "+highscore,10,200);
   fill(0, 102, 153);
+}
+void calcFrequency(){
+  if (score<200){
+    frequency=100;
+  } else if (score<400){
+    frequency=200;
+  } else if (score<900){
+    frequency=300;
+  }else if (score<1600){
+    frequency=400;
+  }else if (score<2500){
+    frequency=500;
+  }else if (score<3600){
+    frequency=600;
+  }else {
+    frequency=1000;
+  }
 }
 void title(){
   textFont(gravy, 200);
@@ -185,7 +204,7 @@ void draw() {
     }
   } else {
     background(bg);
-    int num = rand.nextInt(500);
+    int num = rand.nextInt(frequency);
     if(num<5){
       int x = width;
       int y = rand.nextInt(height);
